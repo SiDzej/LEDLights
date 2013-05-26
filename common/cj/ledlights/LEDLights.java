@@ -1,5 +1,13 @@
 package cj.ledlights;
 
+/**
+ * LED Lights
+ * 
+ * @author _CJ_
+ * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+ * 
+ */
+
 import cj.ledlights.block.ModBlocks;
 import cj.ledlights.config.ConfigHandler;
 import cj.ledlights.lib.Reference;

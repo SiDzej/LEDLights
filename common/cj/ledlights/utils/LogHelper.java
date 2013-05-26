@@ -25,9 +25,9 @@ public class LogHelper {
     	logger.setParent(FMLLog.getLogger());
     }
 
-    public static void log(Level logLevel, String message) {
+    public static void log(Level logLevel, String in) {
 
-    	logger.log(logLevel, message);
+    	logger.log(logLevel, in);
     }
 
 }

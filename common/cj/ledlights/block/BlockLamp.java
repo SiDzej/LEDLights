@@ -15,16 +15,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockLamp extends Block {
 	
-	public BlockLamp(int id) {
-
+	private int state;
+	private int id;
+	
+	public BlockLamp(int id, int state) {
         super(id, Material.glass);
-        this.setUnlocalizedName(Strings.LAMP_NAME);
         setStepSound(soundGlassFootstep);
         setCreativeTab(CreativeTabs.tabBlock);
         this.setHardness(5F);
         this.setLightValue(1.0f);
+        this.state = state;  
+        this.id = id;
     }
-	
 	
 	@SideOnly(Side.CLIENT)
     private Icon[] icons;
@@ -33,10 +35,12 @@ public class BlockLamp extends Block {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister ir) {
     	icons = new Icon[Strings.COLORS.length];
+    	String tmp = "";
+    	if(this.state == 1) tmp = "on";
 
         for (int i = 0; i < Strings.COLORS.length; i++) {
             icons[i] = ir.registerIcon(Reference.TEXTURES + Strings.COLORS[i].toLowerCase() 
-            		+ Strings.LAMP_NAME);
+            		+ Strings.LAMP_NAME + tmp);
         }
     }
 
