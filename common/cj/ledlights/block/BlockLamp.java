@@ -1,9 +1,12 @@
 package cj.ledlights.block;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import cj.ledlights.lib.Reference;
 import cj.ledlights.lib.Strings;
@@ -17,42 +20,35 @@ public class BlockLamp extends Block {
         super(id, Material.glass);
         this.setUnlocalizedName(Strings.LAMP_NAME);
         setStepSound(soundGlassFootstep);
-        setCreativeTab(CreativeTabs.tabMaterials);
+        setCreativeTab(CreativeTabs.tabBlock);
         this.setHardness(5F);
         this.setLightValue(1.0f);
     }
 	
-	@SideOnly(Side.CLIENT)
-	
-	
-	public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-	public boolean isOpaqueCube()
-    {
-        return false;
-    }
-	
-	
-	
-	
-	
-	
 	
 	@SideOnly(Side.CLIENT)
-    private Icon icon;
+    private Icon[] icons;
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister ir) {
-    	icon = ir.registerIcon(Reference.TEXTURES + Strings.LAMP_NAME);
+    	icons = new Icon[Strings.COLORS.length];
 
+        for (int i = 0; i < Strings.COLORS.length; i++) {
+            icons[i] = ir.registerIcon(Reference.TEXTURES + Strings.COLORS[i].toLowerCase() 
+            		+ Strings.LAMP_NAME);
+        }
     }
 
     @SideOnly(Side.CLIENT)
     public Icon getIcon(int side, int meta) {
-        return icon;
+        return icons[meta];
     }
 
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(int par1, CreativeTabs tab, List subItems) {
+		for (int ix = 0; ix < Strings.COLORS.length; ix++) {
+			subItems.add(new ItemStack(this, 1, ix));
+		}
+	}
 }

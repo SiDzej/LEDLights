@@ -19,7 +19,7 @@ public class ConfigHandler {
 
         try {
             conf.load();
-            BlockIds.LAMP = conf.getItem("lamp",BlockIds.LAMP_DEFAULT).getInt(BlockIds.LAMP_DEFAULT);
+            BlockIds.LAMP = conf.getBlock("lamp",BlockIds.LAMP_DEFAULT).getInt(BlockIds.LAMP_DEFAULT);
 
 
         } catch (Exception e) {
