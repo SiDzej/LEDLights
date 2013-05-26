@@ -16,7 +16,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockLamp extends Block {
 	
 	private int state;
-	private int id;
 	
 	public BlockLamp(int id, int state) {
         super(id, Material.glass);
@@ -24,9 +23,13 @@ public class BlockLamp extends Block {
         setCreativeTab(CreativeTabs.tabBlock);
         this.setHardness(5F);
         this.setLightValue(1.0f);
-        this.state = state;  
-        this.id = id;
+        this.state = state;
     }
+	
+	@Override
+	public int damageDropped(int meta){
+		return meta;
+	}
 	
 	@SideOnly(Side.CLIENT)
     private Icon[] icons;
