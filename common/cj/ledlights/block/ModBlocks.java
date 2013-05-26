@@ -15,8 +15,8 @@ public class ModBlocks {
 
     public static void init() {
 
-    	lamp = new BlockLamp(BlockIds.LAMP, 0); // second param for specify on/off state
-    	lampon = new BlockLamp(BlockIds.LAMP_ON, 1);
+    	lamp = new BlockLamp(BlockIds.LAMP, false); // second param for specify on/off state
+    	lampon = new BlockLamp(BlockIds.LAMP_ON, true);
 
         GameRegistry.registerBlock(lamp, ItemBlockLamp.class,Strings.LAMP_NAME + "set");
         GameRegistry.registerBlock(lampon, ItemBlockLamp.class,Strings.LAMP_NAME + "on"+ "set");
