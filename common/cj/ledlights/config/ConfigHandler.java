@@ -19,9 +19,15 @@ public class ConfigHandler {
 
         try {
             conf.load();
-            BlockIds.LAMP = conf.getBlock("lamp",BlockIds.LAMP_DEFAULT).getInt(BlockIds.LAMP_DEFAULT);
-            BlockIds.LAMP_ON = conf.getBlock("lampon",BlockIds.LAMP_ON_DEFAULT)
+            BlockIds.LAMP_OFF = conf.getBlock("lampOff",BlockIds.LAMP_OFF_DEFAULT)
+            		.getInt(BlockIds.LAMP_OFF_DEFAULT);
+            BlockIds.LAMP_ON = conf.getBlock("lampOn",BlockIds.LAMP_ON_DEFAULT)
             		.getInt(BlockIds.LAMP_ON_DEFAULT);
+            
+            BlockIds.LAMP_INV_OFF = conf.getBlock("lampInvOff",BlockIds.LAMP_INV_OFF_DEFAULT)
+            		.getInt(BlockIds.LAMP_INV_OFF_DEFAULT);
+            BlockIds.LAMP_INV_ON = conf.getBlock("lampInvOn",BlockIds.LAMP_INV_ON_DEFAULT)
+            		.getInt(BlockIds.LAMP_INV_ON_DEFAULT);
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod called " + Reference.MOD_NAME

@@ -2,8 +2,6 @@ package cj.ledlights.block;
 
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import cj.ledlights.lib.BlockIds;
 import cj.ledlights.lib.Strings;
 
 public class ItemBlockLamp extends ItemBlock {
@@ -28,6 +26,6 @@ public class ItemBlockLamp extends ItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack is) {
         int meta = is.getItemDamage();
-        return Strings.COLORS[meta] + Strings.LAMP_NAME + ItemBlock_number;
+        return Strings.COLORS[meta] + Strings.LAMP_NAME + ItemBlock_number; // set unique unlocalized name
     }    
 }

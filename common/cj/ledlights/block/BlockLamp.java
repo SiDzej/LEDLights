@@ -20,19 +20,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockLamp extends Block {
 	
-	private boolean state; // Normal or Inverted lamp
 	private boolean powered; // on or off
 	
 	
 	public BlockLamp(int id, boolean state) {
-        super(id, Material.glass);
+        super(id, Material.redstoneLight);
         setStepSound(soundGlassFootstep);
         setCreativeTab(CreativeTabs.tabRedstone);
         
         this.setHardness(1.5F);
 
-        this.powered = false;
-        this.state = state;
+        this.powered = state;
         
         if (state)
         {
@@ -54,7 +52,7 @@ public class BlockLamp extends Block {
     public void registerIcons(IconRegister ir) {
     	icons = new Icon[Strings.COLORS.length];
     	String tmp = "";
-    	if(this.state == true) tmp = "on";
+    	if(this.powered == true) tmp = "on";
 
         for (int i = 0; i < Strings.COLORS.length; i++) {
             icons[i] = ir.registerIcon(Reference.TEXTURES + Strings.COLORS[i].toLowerCase() 
@@ -69,6 +67,9 @@ public class BlockLamp extends Block {
 
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int par1, CreativeTabs tab, List subItems) {
+		// prevent unwated state of lamp to show in creative tab
+		if (this.blockID == BlockIds.LAMP_ON || this.blockID == BlockIds.LAMP_INV_OFF)
+			return;
 		for (int ix = 0; ix < Strings.COLORS.length; ix++) {
 			subItems.add(new ItemStack(this, 1, ix));
 		}
@@ -82,19 +83,24 @@ public class BlockLamp extends Block {
     {
         if (!par1World.isRemote)
         {
-            if (this.powered && !par1World.isBlockIndirectlyGettingPowered(par2, par3, par4))
+            if (this.powered)
             {
-            	powered = !powered;
-            	this.setLightValue(0.0F);
-            	par1World.setLightValue(EnumSkyBlock.Block, par2, par3, par4, 0);
-                par1World.updateLightByType(EnumSkyBlock.Block, par2, par3, par4);
+            	par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, 4);
             }
-            else if (!this.powered && par1World.isBlockIndirectlyGettingPowered(par2, par3, par4))
-            {
-            	powered = !powered;
-            	this.setLightValue(1.0F);
-            	par1World.setLightValue(EnumSkyBlock.Block, par2, par3, par4, 15);
-                par1World.updateLightByType(EnumSkyBlock.Block, par2, par3, par4);            				
+            else if (!this.powered)
+            { 
+            	// turn on normal lamp
+            	if (par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)){
+            		if(this.blockID == BlockIds.LAMP_OFF)
+	            		par1World.setBlock(par2, par3, par4, BlockIds.LAMP_ON, 
+	            				par1World.getBlockMetadata(par2, par3, par4), 2);
+            	}
+            	// turn on inverted
+            	else if(!par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)){
+            		if(this.blockID == BlockIds.LAMP_INV_OFF)
+    	            	par1World.setBlock(par2, par3, par4, BlockIds.LAMP_INV_ON, 
+    	        				par1World.getBlockMetadata(par2, par3, par4), 2);
+            	}
             }
         }
     }
@@ -107,19 +113,26 @@ public class BlockLamp extends Block {
     {
         if (!par1World.isRemote)
         {
-            if (this.powered && !par1World.isBlockIndirectlyGettingPowered(par2, par3, par4))
+        	if (this.powered)
             {
-            	powered = !powered;
-            	this.setLightValue(0.0F);
-            	par1World.setLightValue(EnumSkyBlock.Block, par2, par3, par4, 0);
-                par1World.updateLightByType(EnumSkyBlock.Block, par2, par3, par4);
+            	par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, 4);
             }
-            else if (!this.powered && par1World.isBlockIndirectlyGettingPowered(par2, par3, par4))
+            else if (!this.powered)
             {
-            	powered = !powered;
-            	this.setLightValue(1.0F);
-            	par1World.setLightValue(EnumSkyBlock.Block, par2, par3, par4, 15);
-                par1World.updateLightByType(EnumSkyBlock.Block, par2, par3, par4);
+
+            	// turn on normal lamp
+            	if (par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)){
+            		if(this.blockID == BlockIds.LAMP_OFF)
+	            		par1World.setBlock(par2, par3, par4, BlockIds.LAMP_ON, 
+	            				par1World.getBlockMetadata(par2, par3, par4), 2);
+            	}
+
+            	// turn on inverted
+            	else if(!par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)){
+            		if(this.blockID == BlockIds.LAMP_INV_OFF)
+    	            	par1World.setBlock(par2, par3, par4, BlockIds.LAMP_INV_ON, 
+    	        				par1World.getBlockMetadata(par2, par3, par4), 2);
+            	}
             }
         }
     }
@@ -129,13 +142,55 @@ public class BlockLamp extends Block {
      */
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
-        if (!par1World.isRemote && this.powered && !par1World.isBlockIndirectlyGettingPowered(par2, par3, par4))
+        if (!par1World.isRemote)
         {
-        	powered = !powered;
-        	this.setLightValue(0.0F);
-        	par1World.setLightValue(EnumSkyBlock.Block, par2, par3, par4, 0);
-            par1World.updateLightByType(EnumSkyBlock.Block, par2, par3, par4);
+        	if (this.powered)
+        	{
+        		// turn off normal lamp
+        		if (!par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)){
+        			if(this.blockID == BlockIds.LAMP_ON)
+    	        		par1World.setBlock(par2, par3, par4, BlockIds.LAMP_OFF, 
+    	        			par1World.getBlockMetadata(par2, par3, par4), 2);
+        		}
+        		// turn off inverted
+    	        else if (this.powered && par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)){
+    	        	if(this.blockID == BlockIds.LAMP_INV_ON)
+    	            	par1World.setBlock(par2, par3, par4, BlockIds.LAMP_INV_OFF, 
+    	        			par1World.getBlockMetadata(par2, par3, par4), 2);
+    	        }
+        	}
         }
+    }
+
+    /**
+     * Returns the ID of the items to drop on destruction.
+     */
+    public int idDropped(int par1, Random par2Random, int par3)
+    {
+    	if (this.blockID == BlockIds.LAMP_ON)
+    		return BlockIds.LAMP_OFF;
+    	
+    	if (this.blockID == BlockIds.LAMP_INV_OFF)
+    		return BlockIds.LAMP_INV_ON;
+    	
+    	return this.blockID;
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
+     */
+    public int idPicked(World par1World, int par2, int par3, int par4)
+    {
+    	if (this.blockID == BlockIds.LAMP_ON)
+    		return BlockIds.LAMP_OFF;
+    	
+    	if (this.blockID == BlockIds.LAMP_INV_OFF)
+    		return BlockIds.LAMP_INV_ON;
+    	
+    	return this.blockID;
+        
     }
 
 }
