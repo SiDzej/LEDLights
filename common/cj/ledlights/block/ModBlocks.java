@@ -13,17 +13,16 @@ public class ModBlocks {
     /* Mod block instances */
     public static Block lampOff, lampOn;
     public static Block lampInvOff, lampInvOn;
+    
+    public static Block ladder;
 
     public static void init() {
     	
     	initLamps(); // init all block-like lamps
-        //initBlockRecipes();
-    }
-
-    private static void initBlockRecipes() {
-
-       // GameRegistry.addRecipe(new ItemStack(glassBell), new Object[] { "iii", "i i", "i i", Character.valueOf('i'), Block.glass });
-       // GameRegistry.addRecipe(new ItemStack(aludelBase), new Object[] { "iii", "sis", "iii", Character.valueOf('i'), Item.ingotIron, Character.valueOf('s'), Block.stone });
+    	
+    	ladder = new BlockIronLadder(BlockIds.IRON_LADDER);
+    	GameRegistry.registerBlock(ladder, Strings.IRON_LADDER_NAME);
+    	LanguageRegistry.addName(ladder, Strings.IRON_LADDER_NAME);
     }
     
     

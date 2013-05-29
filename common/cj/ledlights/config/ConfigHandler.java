@@ -8,6 +8,7 @@ import cpw.mods.fml.common.FMLLog;
 import net.minecraftforge.common.Configuration;
 
 import cj.ledlights.lib.BlockIds;
+import cj.ledlights.lib.ItemIds;
 import cj.ledlights.lib.Reference;
 import cj.ledlights.utils.LogHelper;
 
@@ -28,6 +29,12 @@ public class ConfigHandler {
             		.getInt(BlockIds.LAMP_INV_OFF_DEFAULT);
             BlockIds.LAMP_INV_ON = conf.getBlock("lampInvOn",BlockIds.LAMP_INV_ON_DEFAULT)
             		.getInt(BlockIds.LAMP_INV_ON_DEFAULT);
+            
+            BlockIds.IRON_LADDER = conf.getBlock("ironladder",BlockIds.IRON_LADDER_DEFAULT)
+            		.getInt(BlockIds.IRON_LADDER_DEFAULT);
+            
+            ItemIds.LED = conf.getItem("led",ItemIds.LED_DEFAULT)
+            		.getInt(ItemIds.LED_DEFAULT);
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod called " + Reference.MOD_NAME

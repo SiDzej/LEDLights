@@ -1,12 +1,13 @@
 LEDLights
 =========
 
+Now with iron ladder! Preparing to change concept.
 
 Newest release:
 
-[LEDLights - alpha - 3] (https://dl.dropboxusercontent.com/s/9f5au7jhpp27yzj/LEDLights-alpha-3.jar)
+[LEDLights] (https://www.dropbox.com/s/acekd08hgp0ox4e/LEDLights-alpha-7.jar)
 
-[LEDLights - alpha - 1] (https://dl.dropboxusercontent.com/s/rd3q1oxl9jrp082/LEDLights-alpha-1.jar)
+
 
 My first mod. I'm trying to create some light source like Eloraam's Lamps from RP
 

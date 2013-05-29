@@ -14,5 +14,9 @@ public class BlockIds {
     public static int LAMP_ON;
     public static int LAMP_INV_OFF;
     public static int LAMP_INV_ON;
+    
+    
+    public static int IRON_LADDER_DEFAULT = 2010;
+    public static int IRON_LADDER;
 	
 }

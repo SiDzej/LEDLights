@@ -194,5 +194,4 @@ public class BlockLamp extends Block {
     	return this.blockID;
         
     }
-
 }
