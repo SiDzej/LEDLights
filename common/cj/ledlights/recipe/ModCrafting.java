@@ -21,7 +21,7 @@ public class ModCrafting {
 		for (int i = 0; i < Strings.COLORS.length; i++) {
 			GameRegistry.addRecipe(new ItemStack(ModItems.led, 2, i), new Object[] { " # ", "OAO"," I ",
 				Character.valueOf('#'), Item.lightStoneDust, Character.valueOf('I'), Item.ingotIron,
-				Character.valueOf('O'), new ItemStack(Item.dyePowder, 1, Strings.COLORS.length - i),
+				Character.valueOf('O'), new ItemStack(Item.dyePowder, 1, Strings.COLORS.length - i - 1),
 				Character.valueOf('A'), Item.redstone});
 		}
 	}
