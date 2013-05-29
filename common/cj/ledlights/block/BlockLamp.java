@@ -12,6 +12,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import cj.ledlights.LEDLights;
 import cj.ledlights.lib.BlockIds;
 import cj.ledlights.lib.Reference;
 import cj.ledlights.lib.Strings;
@@ -26,7 +27,7 @@ public class BlockLamp extends Block {
 	public BlockLamp(int id, boolean state) {
         super(id, Material.redstoneLight);
         setStepSound(soundGlassFootstep);
-        setCreativeTab(CreativeTabs.tabRedstone);
+        setCreativeTab(LEDLights.tab);
         
         this.setHardness(1.5F);
 

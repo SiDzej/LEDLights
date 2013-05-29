@@ -1,8 +1,8 @@
 package cj.ledlights.block;
 
+
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import cj.ledlights.lib.BlockIds;
 import cj.ledlights.lib.Strings;
 import cpw.mods.fml.common.registry.GameRegistry;

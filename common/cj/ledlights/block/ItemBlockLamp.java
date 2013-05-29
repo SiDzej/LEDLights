@@ -26,6 +26,6 @@ public class ItemBlockLamp extends ItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack is) {
         int meta = is.getItemDamage();
-        return Strings.COLORS[meta] + Strings.LAMP_NAME + ItemBlock_number; // set unique unlocalized name
+        return Strings.COLORS[meta] + Strings.LAMP_NAME + "ID_" + is.itemID; // set unique unlocalized name
     }    
 }
