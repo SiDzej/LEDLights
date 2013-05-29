@@ -10,7 +10,10 @@ package cj.ledlights;
 
 import cj.ledlights.block.ModBlocks;
 import cj.ledlights.config.ConfigHandler;
+import cj.ledlights.creativetabs.CreaTab;
+import cj.ledlights.item.ModItems;
 import cj.ledlights.lib.Reference;
+import cj.ledlights.recipe.ModCrafting;
 import cj.ledlights.utils.LogHelper;
 
 import cpw.mods.fml.common.Mod;
@@ -28,6 +31,9 @@ public class LEDLights {
 	@Instance(Reference.MOD_ID)
     public static LEDLights instance;
 	
+	public static CreaTab tab = new CreaTab(CreaTab.getNextID(),
+            Reference.MOD_ID);
+	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event){
 		
@@ -39,6 +45,9 @@ public class LEDLights {
 		
 		// Loading blocks
 		ModBlocks.init();
+		ModItems.init();
+		
+		ModCrafting.init();
 	}
 	
 	@Init
