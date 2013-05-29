@@ -55,8 +55,8 @@ public class BlockLamp extends Block {
     	if(this.powered == true) tmp = "on";
 
         for (int i = 0; i < Strings.COLORS.length; i++) {
-            icons[i] = ir.registerIcon(Reference.TEXTURES + Strings.COLORS[i].toLowerCase() 
-            		+ Strings.LAMP_NAME + tmp);
+            icons[i] = ir.registerIcon((Reference.TEXTURES + Strings.COLORS[i]
+            		+ Strings.LAMP_NAME + tmp).toLowerCase());
         }
     }
 
@@ -119,14 +119,12 @@ public class BlockLamp extends Block {
             }
             else if (!this.powered)
             {
-
             	// turn on normal lamp
             	if (par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)){
             		if(this.blockID == BlockIds.LAMP_OFF)
 	            		par1World.setBlock(par2, par3, par4, BlockIds.LAMP_ON, 
 	            				par1World.getBlockMetadata(par2, par3, par4), 2);
             	}
-
             	// turn on inverted
             	else if(!par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)){
             		if(this.blockID == BlockIds.LAMP_INV_OFF)
@@ -167,6 +165,7 @@ public class BlockLamp extends Block {
      */
     public int idDropped(int par1, Random par2Random, int par3)
     {
+    	// fix to getting unnamed lamps
     	if (this.blockID == BlockIds.LAMP_ON)
     		return BlockIds.LAMP_OFF;
     	
@@ -183,9 +182,11 @@ public class BlockLamp extends Block {
      */
     public int idPicked(World par1World, int par2, int par3, int par4)
     {
+    	// pick off one lamp - not unnamed
     	if (this.blockID == BlockIds.LAMP_ON)
     		return BlockIds.LAMP_OFF;
     	
+    	// pick on one inverted lamp - not unnamed
     	if (this.blockID == BlockIds.LAMP_INV_OFF)
     		return BlockIds.LAMP_INV_ON;
     	

@@ -1,5 +1,8 @@
 LEDLights
 =========
+
+[LEDLights - alpha - 1] (https://dl.dropboxusercontent.com/s/rd3q1oxl9jrp082/LEDLights-alpha-1.jar)
+
 My first mod. I'm trying to create some light source like Eloraam's Lamps from RP
 
 The idea is to make 'em like LED diode inside block.
