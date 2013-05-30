@@ -66,6 +66,7 @@ public class BlockLamp extends Block {
         return icons[meta];
     }
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int par1, CreativeTabs tab, List subItems) {
 		// prevent unwated state of lamp to show in creative tab
