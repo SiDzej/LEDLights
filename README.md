@@ -1,13 +1,13 @@
-LEDLights
+LEDLights with Ladders!
 =========
 
-Now with ladders!
+Now with glow effect! Thanks to JBukCZ :)
 
-{https://www.dropbox.com/s/ibq9t0aweodoe24/LED-8.png}
+https://www.dropbox.com/s/sp63w9kdtvqhj53/LED-9.png
 
 Newest release:
 
-[LEDLights] (https://www.dropbox.com/s/8lwjt5xrlyz4jn1/LEDLights-alpha-8.jar)
+[LEDLights] (https://dl.dropboxusercontent.com/s/tyvm40d3ynusjk2/LEDLights-alpha-9.jar)
 
 
 

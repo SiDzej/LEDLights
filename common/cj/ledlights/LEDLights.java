@@ -21,6 +21,7 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -33,6 +34,9 @@ public class LEDLights {
 	
 	public static CreaTab tab = new CreaTab(CreaTab.getNextID(),
             Reference.MOD_ID);
+	
+	@SidedProxy(clientSide="cj.ledlights.ClientProxy", serverSide="cj.ledlights.CommonProxy")
+    public static CommonProxy proxy;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event){
@@ -48,6 +52,8 @@ public class LEDLights {
 		ModItems.init();
 		
 		ModCrafting.init();
+		
+		ClientProxy.setCustomRenderers();
 	}
 	
 	@Init

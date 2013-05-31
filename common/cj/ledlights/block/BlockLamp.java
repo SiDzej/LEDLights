@@ -9,9 +9,8 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
+import cj.ledlights.ClientProxy;
 import cj.ledlights.LEDLights;
 import cj.ledlights.lib.BlockIds;
 import cj.ledlights.lib.Reference;
@@ -23,6 +22,16 @@ public class BlockLamp extends Block {
 	
 	private boolean powered; // on or off
 	
+	static private Icon effect = null;
+	
+	static public float[][] overlay = {
+		{1f,1f,1f}, {1f,106/256f,0f}, {1f,0f,1f},		//white, orange, magenta
+		{127/256f,146/256f,1f},	{1f,216/256f,0f},{76/256f,1f,0f},//lightblue, yellow, lime
+		{1f,0.5f,137/256f},	{0.2f,.2f,.2f},	{160/256f,160/256f,160/256f},//pink, gray, lightgray
+		{0f,153/256f,153/256f},{115/256f,0f,165/256f},{0f,0f,1f},	//cyan, purple, blue
+		{100/256f,40/256f,0f},{0f,.6f,0f},{1f,0f,0f},	//grown, green, red
+		{0f,0f,0f},//black
+		};
 	
 	public BlockLamp(int id, boolean state) {
         super(id, Material.redstoneLight);
@@ -48,7 +57,7 @@ public class BlockLamp extends Block {
 	@SideOnly(Side.CLIENT)
     private Icon[] icons;
 
-    @Override
+	@Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister ir) {
     	icons = new Icon[Strings.COLORS.length];
@@ -59,6 +68,8 @@ public class BlockLamp extends Block {
             icons[i] = ir.registerIcon((Reference.TEXTURES + Strings.COLORS[i]
             		+ Strings.LAMP_NAME + tmp).toLowerCase());
         }
+        
+        BlockLamp.setEffect(ir.registerIcon(Reference.TEXTURES + "effect"));
     }
 
     @SideOnly(Side.CLIENT)
@@ -195,4 +206,45 @@ public class BlockLamp extends Block {
     	return this.blockID;
         
     }
+    
+    @Override
+    public boolean renderAsNormalBlock() {
+        return true;
+    }
+
+    @Override
+    public int getRenderType() {
+    	return ClientProxy.blockLampRenderType;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return true;
+    }
+
+    @Override
+    public int getRenderBlockPass() {
+    	if (this.powered)
+    		return 1;
+    	else
+    		return 0;
+    }
+
+    @Override
+    public boolean canRenderInPass(int pass) {
+        ClientProxy.renderPass = pass;
+        return true;
+    }
+
+	public static Icon getEffect() {
+		return effect;
+	}
+
+	public static void setEffect(Icon effect) {
+		BlockLamp.effect = effect;
+	}
+	
+	public boolean getPowered(){
+		return powered;
+	}
 }
