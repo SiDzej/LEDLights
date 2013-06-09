@@ -57,8 +57,9 @@ public class LightEffect implements ISimpleBlockRenderingHandler {
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block blocka, int modelId, RenderBlocks renderer)         {
     	if (ClientProxy.renderPass == 1) {
-    		if(!((BlockLamp)blocka).getPowered())
+    		if(!((BlockLamp)blocka).getPowered()) // dont render not powered lamps
     			return false;
+    		/** avoid texture glitching */
     		double p = 19D;
     		double a,b,c,d,e,f;
     		a=b=c=d=e=f=1;
@@ -82,7 +83,7 @@ public class LightEffect implements ISimpleBlockRenderingHandler {
     			f = 0; // north
     		
             renderer.overrideBlockBounds(-1/p*b, -1/p*d, -1/p*f, a, c, e);
-
+            
             renderer.setOverrideBlockTexture(BlockLamp.getEffect());
             int meta = world.getBlockMetadata(x, y, z);
             renderer.renderStandardBlockWithColorMultiplier(Block.ice, x, y, z, 
