@@ -1,18 +1,12 @@
-LEDLights with Ladders!
+Simply Ladders
 =========
 
-Now with glow effect! Thanks to JBukCZ :)
-
-https://www.dropbox.com/s/sp63w9kdtvqhj53/LED-9.png
+https://www.dropbox.com/s/a3xghue7ws770u9/Ladders-0.png
 
 Newest release:
 
-[LEDLights] (https://dl.dropboxusercontent.com/s/tyvm40d3ynusjk2/LEDLights-alpha-9.jar)
+[Ladders - v1 release] (https://dl.dropboxusercontent.com/s/y7nl6m3h4gfkgbt/Ladders-v-1.jar)
 
 
 
-My first mod. I'm trying to create some light source like Eloraam's Lamps from RP
-
-The idea is to make 'em like LED diode inside block.
-
-Hopefuly I'll have a lot of fun with that :))
+Just simple ladders for Technicraft :) We need some iron and stripe one.
