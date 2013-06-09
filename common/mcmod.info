@@ -1,8 +1,8 @@
 [
 {
-  "modid": "LEDLights",
-  "name": "LED Lights",
-  "description": "Try to make some Lights",
+  "modid": "simplyladders",
+  "name": "Simply Ladders",
+  "description": "Try to make some new Ladders",
   "version":  "@VERSION@",
   "url": "",
   "updateUrl": "",
@@ -10,7 +10,7 @@
     "_CJ_"
   ],
   "Credits": "By _CJ_. First mod make try.",
-  "logoFile": "/mods/LEDLights/textures/logo/logo.png",
+  "logoFile": "",
   "screenshots": [],
   "parent": "",
   "dependencies": []
